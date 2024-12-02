@@ -11,7 +11,7 @@ namespace ModManager
 
         public MainWindow() {
             InitializeComponent();
-            ModsListView.ItemsSource = Mods;
+            ModsDataGrid.ItemsSource = Mods;
         }
 
         private void AddModsButton_Click(object sender, RoutedEventArgs e) {
@@ -33,7 +33,7 @@ namespace ModManager
         }
 
         private void RemoveModsButton_Click(object sender, RoutedEventArgs e) {
-            var selectedMods = ModsListView.SelectedItems;
+            var selectedMods = ModsDataGrid.SelectedItems;
             for (var i = Mods.Count - 1; i >= 0; i--) { 
                 var mod = Mods[i];
                 if (selectedMods.Contains(mod)) {
