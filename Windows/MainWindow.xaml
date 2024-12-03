@@ -10,15 +10,30 @@
 
         <!-- Scrollable DataGrid -->
         <DataGrid x:Name="ModsDataGrid" Grid.Row="0" Margin="10" HeadersVisibility="Column"
-                  ColumnWidth="*" CanUserResizeColumns="True" AutoGenerateColumns="False" IsReadOnly="True">
-            <!-- Mod Name Column -->
+          ColumnWidth="*" CanUserResizeColumns="True" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
+                <!-- Mod Name Column -->
                 <DataGridTextColumn Header="Mod Name" Binding="{Binding Name}" Width="*" />
+
+                <!-- Size Column -->
                 <DataGridTextColumn Header="Size (MB)" Binding="{Binding Size}" Width="*" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"  />
-                <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding IsEnabled}" Width="Auto" IsReadOnly="False" />
+
+                <!-- Type Column -->
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*" />
+
+                <!-- Enabled Column -->
+                <DataGridTemplateColumn Header="Enabled" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}" 
+                              Checked="Enabled_Checked" 
+                              Unchecked="Enabled_Unchecked" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10">
