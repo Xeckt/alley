@@ -4,19 +4,23 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 
 
 namespace ModManager
 {
     public partial class MainWindow : Window 
     {
-        public ObservableCollection<Mod> Mods { get; set; } = new ObservableCollection<Mod>();
+        public ObservableCollection<Mod> ModsList { get; set; } = new ObservableCollection<Mod>();
 
         public MainWindow() 
         {
             InitializeComponent();
-            Mods = new ObservableCollection<Mod>(CacheHandler.LoadMods());
-            ModsDataGrid.ItemsSource = Mods;
+            ModsList = new ObservableCollection<Mod>(CacheHandler.LoadMods());
+            if (ModsList.Count > 0)
+            {
+                ModsDataGrid.ItemsSource = ModsList;
+            }
         }
 
         private void AddModsButton_Click(object sender, RoutedEventArgs e) 
@@ -34,8 +38,8 @@ namespace ModManager
                     try
                     {
                         var mod = ArchiveHandler.ExtractMod(filePath);
-                        Mods.Add(mod);
-                        CacheHandler.SaveMods(Mods);
+                        ModsList.Add(mod);
+                        CacheHandler.SaveMods(ModsList);
                     }
                     catch (Exception ex)
                     {
@@ -50,9 +54,9 @@ namespace ModManager
             var selectedMods = ModsDataGrid.SelectedItems.Cast<Mod>().ToList();
             foreach (var mod in selectedMods)
             {
-                Mods.Remove(mod);
+                ModsList.Remove(mod);
             }
-            CacheHandler.SaveMods(Mods);
+            CacheHandler.SaveMods(ModsList);
         }
 
         private void ExportProfileButton_Click(object sender, RoutedEventArgs e) 
