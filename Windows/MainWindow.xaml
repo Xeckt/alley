@@ -9,20 +9,20 @@
         </Grid.RowDefinitions>
 
         <!-- Scrollable DataGrid -->
-        <DataGrid x:Name="ModsDataGrid" Grid.Row="0" Margin="10" Background="LightBlue"
+        <DataGrid x:Name="ModsDataGrid" Grid.Row="0" Margin="10"
                   AutoGenerateColumns="False" HeadersVisibility="Column"
-                  ColumnWidth="*" IsReadOnly="True" CanUserResizeColumns="True">
+                  ColumnWidth="*" CanUserResizeColumns="True" IsReadOnly="True">
             <!-- Mod Name Column -->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mod Name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="Size (MB)" Binding="{Binding Size}" Width="*" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*" />
-                <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding IsEnabled}" Width="Auto" />
+                <DataGridTextColumn Header="Mod Name" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Size (MB)" Binding="{Binding Size}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*" IsReadOnly="True" />
+                <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding IsEnabled}" Width="Auto" IsReadOnly="False" />
             </DataGrid.Columns>
         </DataGrid>
 
         <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10" Background="LightGreen">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10">
             <Button Content="Add Mods" MinWidth="100" Click="AddModsButton_Click" Margin="5" />
             <Button Content="Remove Selected" MinWidth="120" Click="RemoveModsButton_Click" Margin="5" />
             <Button Content="Export Profile" MinWidth="120" Click="ExportProfileButton_Click" Margin="5" />
