@@ -8,16 +8,19 @@ using System.Windows;
 
 namespace ModManager
 {
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window 
+    {
         public ObservableCollection<Mod> Mods { get; set; } = new ObservableCollection<Mod>();
 
-        public MainWindow() {
+        public MainWindow() 
+        {
             InitializeComponent();
             Mods = new ObservableCollection<Mod>(CacheHandler.LoadMods());
             ModsDataGrid.ItemsSource = Mods;
         }
 
-        private void AddModsButton_Click(object sender, RoutedEventArgs e) {
+        private void AddModsButton_Click(object sender, RoutedEventArgs e) 
+        {
             var openFileDialog = new OpenFileDialog
             {
                 Filter = "Compressed Files (*.zip;*.rar;*.7z)|*.zip;*.rar;*.7z",
@@ -42,7 +45,8 @@ namespace ModManager
             }
         }
 
-        private void RemoveModsButton_Click(object sender, RoutedEventArgs e) {
+        private void RemoveModsButton_Click(object sender, RoutedEventArgs e) 
+        {
             var selectedMods = ModsDataGrid.SelectedItems.Cast<Mod>().ToList();
             foreach (var mod in selectedMods)
             {
@@ -51,7 +55,8 @@ namespace ModManager
             CacheHandler.SaveMods(Mods);
         }
 
-        private void ExportProfileButton_Click(object sender, RoutedEventArgs e) {
+        private void ExportProfileButton_Click(object sender, RoutedEventArgs e) 
+        {
             MessageBox.Show("Export Profile feature is not implemented yet.");
         }
 
