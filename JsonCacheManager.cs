@@ -10,7 +10,7 @@ namespace ModManager
     public static class JsonCacheManager
     {
         // Path to the JSON file that stores the mod cache
-        private static string _filePath = "modcache.json";
+        private static readonly string _filePath = "modcache.json";
 
         /// Loads the mods from the JSON file
         /// If the file doesn't exist, it returns an empty list
