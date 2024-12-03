@@ -1,8 +1,6 @@
 ﻿using Microsoft.Win32;
 using ModManager.Handler;
-using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,10 +15,7 @@ namespace ModManager
         {
             InitializeComponent();
             ModsList = new ObservableCollection<Mod>(CacheHandler.LoadMods());
-            if (ModsList.Count > 0)
-            {
-                ModsDataGrid.ItemsSource = ModsList;
-            }
+            ModsDataGrid.ItemsSource = ModsList;
         }
 
         private void AddModsButton_Click(object sender, RoutedEventArgs e) 
@@ -71,6 +66,22 @@ namespace ModManager
             // Open the Settings window
             //Settings settingsWindow = new Settings();
             //settingsWindow.Show();
+        }
+
+        private void Enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is Mod mod)
+            {
+                MessageBox.Show($"Mod '{mod.Name}' has been enabled.");
+            }
+        }
+
+        private void Enabled_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is Mod mod)
+            {
+                MessageBox.Show($"Mod '{mod.Name}' has been disabled.");
+            }
         }
     }
 }
