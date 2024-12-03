@@ -50,7 +50,7 @@ namespace ModManager
         /// It ensures the structure matches the JSON file format
         private class ModCache
         {
-            public List<Mod> Mods { get; set; }
+            public List<Mod>? Mods { get; set; }
         }
     }
 }
