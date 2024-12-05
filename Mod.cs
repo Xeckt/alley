@@ -16,7 +16,10 @@ namespace ModManager
     {
         Map,
         Clothing,
+        Animation,
         Utility,
-        Custom
+        Blueprint,
+        Custom,
+        Unknown,
     }
 }
