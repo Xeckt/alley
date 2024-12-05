@@ -15,7 +15,7 @@ namespace ModManager
     public class ModFiles 
     { 
         public string FileName { get; set; }
-        public string FileChecksum { get; set; }
+        public string Checksum { get; set; }
     }
 
     public enum ModType 

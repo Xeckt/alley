@@ -54,7 +54,7 @@ namespace ModManager.Handler
                             mod.Files.Add(new ModFiles 
                             {
                                 FileName = fullModPath,
-                                FileChecksum = checksum,
+                                Checksum = checksum,
                             });
 
                             modList.Add(mod);
