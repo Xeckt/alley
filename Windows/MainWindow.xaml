@@ -34,7 +34,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10">
             <Button Content="Add Mods" MinWidth="100" Click="AddModsButton_Click" Margin="5" />

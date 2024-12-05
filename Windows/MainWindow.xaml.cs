@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
 using ModManager.Handler;
+using ModManager.Windows;
+using ModManager;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,39 +11,17 @@ namespace ModManager
 {
     public partial class MainWindow : Window 
     {
-        public ObservableCollection<Mod> ModsList { get; set; } = new ObservableCollection<Mod>();
-
         public MainWindow() 
         {
             InitializeComponent();
-            ModsList = new ObservableCollection<Mod>(CacheHandler.LoadMods());
-            ModsDataGrid.ItemsSource = ModsList;
+            Mod.ModsList = new ObservableCollection<Mod>(CacheHandler.LoadMods());
+            ModsDataGrid.ItemsSource = Mod.ModsList;
         }
 
         private void AddModsButton_Click(object sender, RoutedEventArgs e) 
         {
-            var openFileDialog = new OpenFileDialog
-            {
-                Filter = "Compressed Files (*.zip;*.rar;*.7z)|*.zip;*.rar;*.7z",
-                Multiselect = true
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                foreach (var filePath in openFileDialog.FileNames)
-                {
-                    try
-                    {
-                        var mod = ArchiveHandler.ExtractMod(filePath);
-                        ModsList.Add(mod);
-                        CacheHandler.SaveMods(ModsList);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Failed to add mod: {ex.Message}");
-                    }
-                }
-            }
+            ModImportWindow modImportWindow = new ModImportWindow();
+            modImportWindow.Show();
         }
 
         private void RemoveModsButton_Click(object sender, RoutedEventArgs e) 
@@ -49,9 +29,9 @@ namespace ModManager
             var selectedMods = ModsDataGrid.SelectedItems.Cast<Mod>().ToList();
             foreach (var mod in selectedMods)
             {
-                ModsList.Remove(mod);
+                Mod.ModsList.Remove(mod);
             }
-            CacheHandler.SaveMods(ModsList);
+            CacheHandler.SaveMods(Mod.ModsList);
         }
 
         private void ExportProfileButton_Click(object sender, RoutedEventArgs e) 
