@@ -80,7 +80,7 @@ namespace ModManager.Windows
                 }
             }
 
-            if (ModsListBox.Items.Count > 0)
+            if (ModsListBox.Items.Count > 0) // TODO: Fix this because if you select the button first then import, it doesn't enable the import button.
             {
                 ImportModsButton.IsEnabled = true;
             }
