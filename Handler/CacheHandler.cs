@@ -42,10 +42,10 @@ namespace ModManager.Handler
             var json = JsonConvert.SerializeObject(cache, Newtonsoft.Json.Formatting.Indented);
 
             // Write the JSON string to the file
-            File.WriteAllText(_filePath, json);
+            File.AppendAllText(_filePath, json);
 
             foreach (var mod in mods) {
-                if (!Mod.ModsList.Any(existingMod => existingMod.Name == mod.Name))
+                if (!Mod.ModsList.Any(existingMod => existingMod.Name == mod.Name)) // Check if the same mod is currently loaded in the list
                 { 
                     Mod.ModsList.Add(mod);
                 }
