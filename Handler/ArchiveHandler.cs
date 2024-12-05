@@ -11,11 +11,8 @@ namespace ModManager.Handler
             var fileInfo = new FileInfo(archivePath);
 
             return new Mod
-            {
-                Name = Path.GetFileNameWithoutExtension(archivePath),
-                Size = Math.Round(fileInfo.Length / (1024.0 * 1024.0), 2), // Convert to MB
-                Type = Path.GetExtension(archivePath).ToUpper()
-            };
+
+            {};
         }
     }
 }
