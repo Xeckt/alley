@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows;
 using ModManager.Windows;
 using SharpCompress.Archives;
@@ -23,6 +24,8 @@ namespace ModManager.Handler
                     foreach (var entry in archive.Entries)
                     {
                         string modName = Path.GetFileNameWithoutExtension(archivePath);
+                        string fullModPath = Path.Combine(ExtractPath, entry.Key);
+
                         var mod = modList.FirstOrDefault(m => m.Name == modName);
 
                         if (mod == null)
@@ -31,11 +34,9 @@ namespace ModManager.Handler
                             {
                                 Type = ModImportWindow.GetSelectedType(),
                                 Name = modName,
-                                FilePaths = new List<string>(),
                                 Size = Math.Round(fileInfo.Length / (1024.0 * 1024.0), 2),
                                 IsEnabled = false
                             };
-                            modList.Add(mod);
                         }
 
                         if (!entry.IsDirectory)
@@ -47,7 +48,16 @@ namespace ModManager.Handler
                                 ExtractFullPath = true,
                                 Overwrite = true
                             });
-                            mod.FilePaths.Add(Path.Combine(ExtractPath, entry.Key));
+
+                            string checksum = GetFileChecksum(fullModPath, SHA256.Create());
+
+                            mod.Files.Add(new ModFiles 
+                            {
+                                FileName = fullModPath,
+                                FileChecksum = checksum,
+                            });
+
+                            modList.Add(mod);
                         };
 
                     }
@@ -58,6 +68,16 @@ namespace ModManager.Handler
                 MessageBox.Show($"Error during extraction: {ex.Message}");
             }
             CacheHandler.SaveMods(modList);
+        }
+
+        private static string GetFileChecksum(string filePath, HashAlgorithm hashAlgorithm) 
+        {
+            using (hashAlgorithm)
+            using (var stream = File.OpenRead(filePath))
+            {
+                byte[] hash = hashAlgorithm.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            }
         }
     }
 }

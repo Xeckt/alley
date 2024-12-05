@@ -8,8 +8,14 @@ namespace ModManager
         public double Size { get; set; } // Size in MB
         public ModType Type { get; set; }
         public bool IsEnabled { get; set; } = false;
-        public List<string> FilePaths { get; set; } = new List<string>();
+        public List<ModFiles> Files { get; set; } = new List<ModFiles>();
         public static ObservableCollection<Mod> ModsList { get; set; }
+    }
+
+    public class ModFiles 
+    { 
+        public string FileName { get; set; }
+        public string FileChecksum { get; set; }
     }
 
     public enum ModType 
