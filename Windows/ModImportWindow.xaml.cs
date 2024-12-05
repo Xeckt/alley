@@ -22,13 +22,39 @@ namespace ModManager.Windows
     /// </summary>
     public partial class ModImportWindow : Window
     {
+
+        private static string SelectedType { get; set;  } = "";
+
         public ModImportWindow()
         {
             InitializeComponent();
         }
 
+        public static ModType GetSelectedType() {
+            switch (SelectedType)
+            {
+                case "Map":
+                    return ModType.Map;
+                case "Clothing":
+                    return ModType.Clothing;
+                case "Animation":
+                    return ModType.Animation;
+                case "Utility":
+                    return ModType.Utility;
+                case "Blueprint":
+                    return ModType.Blueprint;
+                case "Custom":
+                    return ModType.Custom;
+            }
+            return ModType.Unknown;
+        }
+
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
+            foreach (var mod in ModsList.Items) { 
+                ArchiveHandler.ExtractAndImportMod(mod.ToString());
+            }
+            this.Close();
         }
 
         private void SelectModsButton_Click(object sender, RoutedEventArgs e)
@@ -45,7 +71,7 @@ namespace ModManager.Windows
                 {
                     try
                     {
-                        ModsListBox.Items.Add(filePath);
+                        ModsList.Items.Add(filePath);
                     } 
                     catch (Exception ex)
                     {
@@ -57,13 +83,13 @@ namespace ModManager.Windows
 
         private void RemoveSelectedButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItems = ModsListBox.SelectedItems.Cast<object>().ToList();
+            var selectedItems = ModsList.SelectedItems.Cast<object>().ToList();
 
-            if (ModsListBox.SelectedItems.Count > 0 && ModsListBox.SelectedItems != null) 
+            if (ModsList.SelectedItems.Count > 0 && ModsList.SelectedItems != null) 
             {
                 foreach (var mod in selectedItems)
                 {
-                    ModsListBox.Items.Remove(mod);
+                    ModsList.Items.Remove(mod);
                 }
             }
         }
@@ -77,10 +103,11 @@ namespace ModManager.Windows
                 if (child is CheckBox checkbox && checkbox != selectedCheckbox)
                 {
                     checkbox.IsEnabled = false;
+                    SelectedType = selectedCheckbox.Name;
                 }
             }
 
-            if (ModsListBox.Items.Count > 0) // TODO: Fix this because if you select the button first then import, it doesn't enable the import button.
+            if (ModsList.Items.Count > 0) // TODO: Fix this because if you select the button first then import, it doesn't enable the import button.
             {
                 ImportModsButton.IsEnabled = true;
             }
