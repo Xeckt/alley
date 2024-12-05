@@ -1,0 +1,35 @@
+﻿<Window x:Class="ModManager.Windows.ModImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModManager.Windows"
+        mc:Ignorable="d"
+        Title="Import Mods" Height="600" Width="450" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- For the list of files -->
+            <RowDefinition Height="Auto"/>
+            <!-- For the checkboxes -->
+            <RowDefinition Height="Auto"/>
+            <!-- For the button -->
+        </Grid.RowDefinitions>
+
+        <!-- List of Files -->
+        <ListBox x:Name="ModsListBox" Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="0,0,0,10" SelectionMode="Multiple"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5">
+            <CheckBox Content="Map" x:Name="MapCheckBox" Margin="5,0"/>
+            <CheckBox Content="Utility" x:Name="UtilityCheckBox" Margin="5,0"/>
+            <CheckBox Content="Clothing" x:Name="ClothingCheckBox" Margin="5,0"/>
+            <CheckBox Content="Custom" x:Name="CustomCheckBox" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Import Button -->
+        <Button Content="Import Mods" x:Name="ImportButton" Grid.Row="2" HorizontalAlignment="Left" Width="120" Click="ImportButton_Click" Margin="310,28,0,0"/>
+        <Button Content="Select Mods" x:Name="SelectModsButton" Grid.Row="2" HorizontalAlignment="Left" Width="110" Click="SelectModsButton_Click" Margin="0,28,0,0"/>
+        <Button Content="Remove Selected" x:Name="RemoveSelectedButton" Grid.Row="2" HorizontalAlignment="Center" Width="150" Click="RemoveSelectedButton_Click" Margin="0,28,0,0"/>
+
+    </Grid>
+</Window>
