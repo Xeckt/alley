@@ -67,5 +67,36 @@ namespace ModManager.Windows
                 }
             }
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var selectedCheckbox = sender as CheckBox;
+
+            foreach (var child in ((StackPanel)selectedCheckbox.Parent).Children)
+            {
+                if (child is CheckBox checkbox && checkbox != selectedCheckbox)
+                {
+                    checkbox.IsEnabled = false;
+                }
+            }
+
+            if (ModsListBox.Items.Count > 0)
+            {
+                ImportModsButton.IsEnabled = true;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var child in ((StackPanel)((CheckBox)sender).Parent).Children)
+            {
+                if (child is CheckBox checkbox)
+                {
+                    checkbox.IsEnabled = true;
+                }
+            }
+            ImportModsButton.IsEnabled = false;
+        }
+
     }
 }
