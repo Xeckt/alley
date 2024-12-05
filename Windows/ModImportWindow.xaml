@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModManager.Windows"
         mc:Ignorable="d"
-        Title="Import Mods" Height="600" Width="500" ResizeMode="NoResize">
+        Title="Import Mods" Height="600" Width="550" ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -14,13 +14,14 @@
         </Grid.RowDefinitions>
 
         <!-- List of Files -->
-        <ListBox x:Name="ModsListBox" Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="0,0,0,15" SelectionMode="Multiple"/>
+        <ListBox x:Name="ModsList" Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="0,0,0,15" SelectionMode="Multiple"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
             <Label Content="Select Type: " HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="14"/>
             <CheckBox Content="Map" x:Name="MapCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-            <CheckBox Content="Utility" x:Name="UtilityCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
             <CheckBox Content="Clothing" x:Name="ClothingCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox Content="Animation" x:Name="AnimationCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox Content="Utility" x:Name="UtilityCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
             <CheckBox Content="Blueprint" x:Name="BlueprintCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
             <CheckBox Content="Custom" x:Name="CustomCheckBox" Margin="5,0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
         </StackPanel>
