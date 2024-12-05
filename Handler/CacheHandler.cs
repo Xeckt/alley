@@ -48,6 +48,22 @@ namespace ModManager.Handler
             }
         }
 
+
+        public static void DeleteMods(IEnumerable<Mod> mods)
+        {
+            List<Mod> savedMods = LoadMods();
+
+            foreach (var mod in mods)
+            {
+                int index = savedMods.FindIndex(m => m.Name == mod.Name);
+                if (index != 1)
+                {
+                    savedMods.RemoveAt(index);
+                }
+            }
+            File.WriteAllText(_filePath, JsonConvert.SerializeObject(new ModCache { Mods = savedMods }, Newtonsoft.Json.Formatting.Indented));
+        }
+
         private class ModCache
         {
             public List<Mod>? Mods { get; set; }
