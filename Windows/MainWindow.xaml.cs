@@ -5,6 +5,7 @@ using ModManager;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 
 namespace ModManager
@@ -24,14 +25,14 @@ namespace ModManager
             modImportWindow.Show();
         }
 
-        private void RemoveModsButton_Click(object sender, RoutedEventArgs e) 
+        private void RemoveModsButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedMods = ModsDataGrid.SelectedItems.Cast<Mod>().ToList();
             foreach (var mod in selectedMods)
-            {
+            { 
                 Mod.ModsList.Remove(mod);
             }
-            CacheHandler.SaveMods(Mod.ModsList);
+            CacheHandler.DeleteMods(selectedMods);
         }
 
         private void ExportProfileButton_Click(object sender, RoutedEventArgs e) 
