@@ -27,18 +27,7 @@ namespace ModManager.Handler
 
         public static void SaveMods(IEnumerable<Mod> mods)
         {
-            List<Mod> savedMods;
-
-            if (File.Exists(_filePath))
-            {
-                var cacheContent = File.ReadAllText(_filePath);
-                var savedCache = JsonConvert.DeserializeObject<ModCache>(cacheContent);
-                savedMods = savedCache?.Mods ?? new List<Mod>();
-            } 
-            else
-            {
-                savedMods = new List<Mod>();
-            }
+            List<Mod> savedMods = LoadMods();
 
             foreach (var mod in mods)
             {
