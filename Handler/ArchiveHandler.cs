@@ -18,7 +18,6 @@ namespace ModManager.Handler
 
             try
             {
-                // Open the archive
                 using (var archive = ArchiveFactory.Open(archivePath))
                 {
                     foreach (var entry in archive.Entries)
