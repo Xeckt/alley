@@ -14,12 +14,12 @@ namespace ModManager
 
     public enum ModType 
     {
-        Map,
-        Clothing,
-        Animation,
-        Utility,
-        Blueprint,
-        Custom,
-        Unknown,
+        Map = 1,
+        Clothing = 2,
+        Animation = 3,
+        Utility = 4,
+        Blueprint = 5,
+        Custom = 6,
+        Unknown = 7,
     }
 }

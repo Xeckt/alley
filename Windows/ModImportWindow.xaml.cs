@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,19 +32,20 @@ namespace ModManager.Windows
         }
 
         public static ModType GetSelectedType() {
+            Trace.WriteLine(SelectedType);
             switch (SelectedType)
             {
-                case "Map":
+                case "MapCheckBox":
                     return ModType.Map;
-                case "Clothing":
+                case "ClothingCheckBox":
                     return ModType.Clothing;
-                case "Animation":
+                case "AnimationCheckBox":
                     return ModType.Animation;
-                case "Utility":
+                case "UtilityCheckBox":
                     return ModType.Utility;
-                case "Blueprint":
+                case "BlueprintCheckBox":
                     return ModType.Blueprint;
-                case "Custom":
+                case "CustomCheckBox":
                     return ModType.Custom;
             }
             return ModType.Unknown;
