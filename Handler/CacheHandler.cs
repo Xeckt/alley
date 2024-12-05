@@ -52,7 +52,7 @@ namespace ModManager.Handler
 
             foreach (var mod in savedMods)
             {
-                if (!Mod.ModsList.Any(existingMod => existingMod.Name == mod.Name))
+                if (!Mod.ModsList.Any(existingMod => existingMod.Name == mod.Name)) // TODO - find an event driven way to add mods to the list and remove them.
                 {
                     Mod.ModsList.Add(mod);
                 }
