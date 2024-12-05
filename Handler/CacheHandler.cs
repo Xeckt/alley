@@ -43,6 +43,13 @@ namespace ModManager.Handler
 
             // Write the JSON string to the file
             File.WriteAllText(_filePath, json);
+
+            foreach (var mod in mods) {
+                if (!Mod.ModsList.Any(existingMod => existingMod.Name == mod.Name))
+                { 
+                    Mod.ModsList.Add(mod);
+                }
+            }
         }
 
         /// Private class to wrap the mods for JSON
