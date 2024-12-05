@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Xml;
+﻿using System.IO;
 using Newtonsoft.Json;
 
 namespace ModManager.Handler
@@ -48,7 +44,6 @@ namespace ModManager.Handler
             }
         }
 
-
         public static void DeleteMods(IEnumerable<Mod> mods)
         {
             List<Mod> savedMods = LoadMods();
@@ -61,7 +56,9 @@ namespace ModManager.Handler
                     savedMods.RemoveAt(index);
                 }
             }
+
             File.WriteAllText(_filePath, JsonConvert.SerializeObject(new ModCache { Mods = savedMods }, Newtonsoft.Json.Formatting.Indented));
+
         }
 
         private class ModCache

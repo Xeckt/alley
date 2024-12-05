@@ -1,11 +1,7 @@
-﻿using Microsoft.Win32;
-using ModManager.Handler;
+﻿using ModManager.Handler;
 using ModManager.Windows;
-using ModManager;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Diagnostics;
 
 
 namespace ModManager
